@@ -13,6 +13,7 @@
     "prettier:fix": "prettier . --write --list-different",
     "cleancode": "npm run lint && npm run prettier",
     "cleancode:fix": "npm run lint:fix && npm run prettier:fix && git update-index --again",
+    "lint-staged": "lint-staged",
     "prepare": "husky install"
   },
   "private": true,
@@ -49,9 +50,18 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "lint-staged": "^15.5.1",
     "prettier": "^3.5.3",
     "prettier-eslint": "^16.4.1",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.27.0"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "eslint --fix"
+    ],
+    "**/*.{json,css,scss,md,html}": [
+      "prettier --write --list-different"
+    ]
   }
 }

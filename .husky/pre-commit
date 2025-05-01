@@ -1,1 +1,1 @@
-npm run cleancode:fix
+npm run lint-staged
