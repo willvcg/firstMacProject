@@ -12,10 +12,9 @@ module.exports = tseslint.config(
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
       ...angular.configs.tsRecommended,
-      
     ],
     plugins: {
-      prettier: prettierPlugin
+      prettier: prettierPlugin,
     },
     processor: angular.processInlineTemplates,
     rules: {
@@ -45,5 +44,5 @@ module.exports = tseslint.config(
       ...angular.configs.templateAccessibility,
     ],
     rules: {},
-  }
+  },
 );
