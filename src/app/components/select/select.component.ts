@@ -11,18 +11,17 @@ const cities: City[] = [
   { name: 'Rome', code: 'RM' },
   { name: 'London', code: 'LDN' },
   { name: 'Istanbul', code: 'IST' },
-  { name: 'Paris', code: 'PRS' }
+  { name: 'Paris', code: 'PRS' },
 ];
 
 @Component({
   selector: 'app-select',
   imports: [SelectModule, FormsModule],
   templateUrl: './select.component.html',
-  styleUrl: './select.component.scss'
+  styleUrl: './select.component.scss',
 })
 export class SelectComponent {
   cities: City[] | undefined = cities;
 
   selectedCity: City | undefined;
-
 }
