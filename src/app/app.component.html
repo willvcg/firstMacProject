@@ -3,6 +3,5 @@
 @if (data$() | async; as data) {
   <app-table-prime-ng
     [data]="data"
-    [pagination]="pagination()"
-    (paginationChange)="onPagination($event)" />
+    [(paginationModel)]="pagination" />
 }

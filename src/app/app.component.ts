@@ -21,13 +21,9 @@ import { PokeApiService } from './services/poke-api.service';
 })
 export class AppComponent {
   private pokeApiService = inject(PokeApiService);
-  pagination = signal({ limit: 10, offset: 0 });
+  protected pagination = signal({ limit: 10, offset: 0 });
   protected data$ = computed(() => {
     const { limit, offset } = this.pagination();
     return this.pokeApiService.getPokemons(limit, offset);
   });
-
-  protected onPagination(event: { first: number; rows: number }) {
-    this.pagination.set({ limit: event.rows, offset: event.first });
-  }
 }
