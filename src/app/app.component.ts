@@ -3,7 +3,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonComponent } from './components/button/button.component';
 import { SelectComponent } from './components/select/select.component';
-import { TablePrimeNgComponent } from './components/table/table.component';
+import { TablePrimeNgComponent } from './components/table-prime-ng/table-prime-ng.component';
 import { PokeApiService } from './services/poke-api.service';
 
 @Component({

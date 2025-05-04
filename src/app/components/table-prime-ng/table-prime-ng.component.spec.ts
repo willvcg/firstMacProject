@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TablePrimeNgComponent } from './table.component';
+import { TablePrimeNgComponent } from './table-prime-ng.component';
 
 describe('TableComponent', () => {
   let component: TablePrimeNgComponent;

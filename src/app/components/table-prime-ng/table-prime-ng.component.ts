@@ -6,8 +6,8 @@ import { PokemonListResponse } from '../../Interfaces/poke.interface';
 @Component({
   selector: 'app-table-prime-ng',
   imports: [TableModule, JsonPipe],
-  templateUrl: './table.component.html',
-  styleUrl: './table.component.scss',
+  templateUrl: './table-prime-ng.component.html',
+  styleUrl: './table-prime-ng.component.scss',
 })
 export class TablePrimeNgComponent {
   data = input.required<PokemonListResponse>();
