@@ -39,6 +39,7 @@
     "@angular/compiler-cli": "^19.2.0",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
+    "@semantic-release/npm": "^12.0.1",
     "@types/jasmine": "~5.1.0",
     "angular-eslint": "^19.3.0",
     "eslint": "^9.25.1",
@@ -64,6 +65,19 @@
     ],
     "**/*.{json,css,scss,md,html}": [
       "prettier --write --list-different"
+    ]
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      "@semantic-release/github"
     ]
   }
 }
