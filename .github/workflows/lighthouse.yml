@@ -34,11 +34,11 @@ jobs:
 
       - name: Run Lighthouse manually
         run: |
-          lighthouse http://localhost:8080 \
+          npx lighthouse http://localhost:8080 \
             --output html \
             --output json \
             --output-path ./lighthouse-report \
-            --chrome-flags="--no-sandbox"
+            --chrome-flags="--no-sandbox --headless --disable-gpu"
 
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v4
