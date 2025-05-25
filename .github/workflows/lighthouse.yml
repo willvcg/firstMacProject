@@ -32,12 +32,18 @@ jobs:
           http-server ./dist/first-mac-project -p 8080 &
           npx wait-on http://localhost:8080
 
-      - name: Run Lighthouse manually
+      - name: Run Lighthouse (HTML)
         run: |
           npx lighthouse http://localhost:8080 \
             --output html \
+            --output-path=./lighthouse-report.html \
+            --chrome-flags="--no-sandbox --headless --disable-gpu"
+
+      - name: Run Lighthouse (JSON)
+        run: |
+          npx lighthouse http://localhost:8080 \
             --output json \
-            --output-path ./lighthouse-report \
+            --output-path=./lighthouse-report.json \
             --chrome-flags="--no-sandbox --headless --disable-gpu"
 
       - name: Upload Lighthouse report
