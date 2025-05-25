@@ -24,13 +24,14 @@ jobs:
       - name: Build Angular app
         run: npm run build -- --configuration production
 
-      - name: Install http-server
-        run: npm install -g http-server
+      - name: Install and serve app
+        run: |
+          npm install -g http-server wait-on
+          http-server ./dist/first-mac-project -p 8080 &
+          npx wait-on http://localhost:8080
 
       - name: Run Lighthouse audit
         uses: treosh/lighthouse-ci-action@v10
         with:
           urls: http://localhost:8080
-          startServerCommand: http-server ./dist/first-mac-project -p 8080
           uploadArtifacts: true
-          configPath: ./lighthouserc.json
