@@ -1,0 +1,54 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular app
+        run: npm run build -- --configuration production
+
+      - name: Install wait-on
+        run: npm install -g wait-on
+
+      - name: Serve app
+        run: |
+          npx http-server ./dist/first-mac-project -p 8080 &
+          echo "Server started"
+
+      - name: Wait for app to be available
+        run: npx wait-on http://localhost:8080
+
+      - name: Run Lighthouse
+        run: |
+          npm install -g lighthouse
+          lighthouse http://localhost:8080 \
+            --output html \
+            --output json \
+            --output-path ./lighthouse-report \
+            --quiet \
+            --chrome-flags="--no-sandbox"
+
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: |
+            ./lighthouse-report.html
+            ./lighthouse-report.json
