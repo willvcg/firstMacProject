@@ -24,34 +24,13 @@ jobs:
       - name: Build Angular app
         run: npm run build -- --configuration production
 
-      - name: Install wait-on
-        run: npm install -g wait-on
+      - name: Install http-server
+        run: npm install -g http-server
 
-      - name: Serve app
-        run: |
-          npx http-server ./dist/first-mac-project -p 8080 &
-          echo "Server started on port 8080"
-
-      - name: Wait for app to be available
-        run: npx wait-on http://localhost:8080
-
-      - name: Extra delay (in case server needs a few seconds)
-        run: sleep 5
-
-      - name: Run Lighthouse
-        run: |
-          npm install -g lighthouse
-          lighthouse http://localhost:8080 \
-            --output html \
-            --output json \
-            --output-path ./lighthouse-report \
-            --quiet \
-            --chrome-flags="--no-sandbox"
-
-      - name: Upload Lighthouse report
-        uses: actions/upload-artifact@v4
+      - name: Run Lighthouse audit
+        uses: treosh/lighthouse-ci-action@v10
         with:
-          name: lighthouse-report
-          path: |
-            ./lighthouse-report.html
-            ./lighthouse-report.json
+          urls: http://localhost:8080
+          startServerCommand: http-server ./dist/first-mac-project -p 8080
+          uploadArtifacts: true
+          configPath: ./lighthouserc.json
