@@ -36,5 +36,9 @@ jobs:
         uses: treosh/lighthouse-ci-action@v10
         with:
           urls: http://localhost:8080
-          uploadArtifacts: true
-          artifactName: lighthouseci
+
+      - name: Upload Lighthouse report manually
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: ./.lighthouseci
