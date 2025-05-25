@@ -13,7 +13,6 @@ import { PokeApiService } from './services/poke-api.service';
     ButtonComponent,
     SelectComponent,
     AsyncPipe,
-    JsonPipe,
     TablePrimeNgComponent,
   ],
   templateUrl: './app.component.html',
