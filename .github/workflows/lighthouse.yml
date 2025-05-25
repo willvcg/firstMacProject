@@ -24,9 +24,11 @@ jobs:
       - name: Build Angular app
         run: npm run build -- --configuration production
 
-      - name: Install and serve app
+      - name: Install http-server and wait-on
+        run: npm install -g http-server wait-on
+
+      - name: Serve Angular app
         run: |
-          npm install -g http-server wait-on
           http-server ./dist/first-mac-project -p 8080 &
           npx wait-on http://localhost:8080
 
